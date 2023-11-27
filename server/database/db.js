@@ -1,15 +1,22 @@
 import mongoose from 'mongoose'
+import express from "express";
+import { dbname } from "../constants.js";
 
-const Connection=async (username,password)=>{
-   
-    URL=`mongodb://${username}:${password}@ac-xtm82v3-shard-00-00.eqqg4mg.mongodb.net:27017,ac-xtm82v3-shard-00-01.eqqg4mg.mongodb.net:27017,ac-xtm82v3-shard-00-02.eqqg4mg.mongodb.net:27017/?ssl=true&replicaSet=atlas-wmwpry-shard-0&authSource=admin&retryWrites=true&w=majority`
+const app = express()
+const Connection=async ()=>{
    
     try{
- await mongoose.connect(URL,{useUnifiedTopology:true,useNewUrlParser:true})
- console.log("connected successfully")
+       const connectionInstances=await mongoose.connect("mongodb://maviasajjad:mavia123@ac-qnkiies-shard-00-00.f3qdsg6.mongodb.net:27017,ac-qnkiies-shard-00-01.f3qdsg6.mongodb.net:27017,ac-qnkiies-shard-00-02.f3qdsg6.mongodb.net:27017/?ssl=true&replicaSet=atlas-dlccri-shard-0&authSource=admin&retryWrites=true&w=majority");
+ console.log (`DB connected successfully to (${connectionInstances.connection.host})`)
+//  console.log(connectionInstances)
+//  const port=process.env.PORT not workinng will see in future
+//  console.log(port)
+const port=4000;
+ app.listen(port,()=>(console.log(`server is running at ${port}`)))
     }
     catch(error){
-        console.log("error while connecting",error)
+        console.log("Failed to connect",error)
+        process.exit(1)
 
     }
 }
