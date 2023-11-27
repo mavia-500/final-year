@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
-import express from "express";
+// import express from "express";
 import { dbname } from "../constants.js";
 
-const app = express()
+// const app = express()
 const Connection=async ()=>{
    
     try{
@@ -11,8 +11,6 @@ const Connection=async ()=>{
 //  console.log(connectionInstances)
 //  const port=process.env.PORT not workinng will see in future
 //  console.log(port)
-const port=4000;
- app.listen(port,()=>(console.log(`server is running at ${port}`)))
     }
     catch(error){
         console.log("Failed to connect",error)
