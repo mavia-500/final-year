@@ -2,11 +2,12 @@ import dotenv from "dotenv"
 import express from 'express';
 import Connection from './database/db.js';
 import {app} from "./app.js"
-import routes from "./routes/authRoutes.js";
+// import routes from "./routes/user.routes.js";
 // import cors from "cors"
 
 dotenv.config();
-const appe=express(); 
+// const appe=express()
+// const appe=express(); 
 // {path:'./env'}
 // app.use(cors({
     // origin:'http://localhost:5173', 
@@ -25,8 +26,9 @@ const appe=express();
 
 Connection()
 .then(()=>{
-    const port=4000;
- appe.listen(port || 8000,()=>(console.log(`server is running at ${port}`)))
+    // const port=process.env.PORT
+    console.log(process.env.PORT)
+ app.listen(process.env.PORT||3000,()=>(console.log(`server is running at ${process.env.PORT}`)))
 
 })
 .catch(err=>{
@@ -36,14 +38,14 @@ Connection()
 
 // global middle ware
 
-appe.use((req,res,next)=>{
+// appe.use((req,res,next)=>{
     
 
-    console.log(req.path,req.method)
-    next()
-})
+    // console.log(req.path,req.method)
+    // next()
+// })
 
-appe.use('/api/workout',routes)
+// appe.use('/api/workout',routes)
 
 
 
