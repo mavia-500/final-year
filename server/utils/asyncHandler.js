@@ -1,8 +1,10 @@
 const asyncHandler=(requestHandler)=>{
-   return (req,res,next)=>{
+   return( (req,res,next)=>{
+    console.log("asyn handler is working properly")
     Promise.resolve(requestHandler(req,res,next)).catch(err=>next(err))
     
     }
+   )
 }
 export {asyncHandler}
 

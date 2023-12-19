@@ -5,7 +5,7 @@ import cors from "cors"
 const app=express()
 app.use(cors({
     origin:'http://localhost:5173', //
-    Credential:true
+    Credential:true 
 }))
 
 // allow to accept json data
@@ -24,11 +24,9 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 
-////importing and using routes
-// import userRoutes from "./routes/user.routes.js"
-
-
+// importing and using routes
+import {routes} from "./routes/user.routes.js"
 ///using routes 
-// app.use("/api/v1/user", userRoutes)
-
+app.use("/api/v1/user", routes)
+console.log("beta")
 export {app}
